@@ -7,11 +7,11 @@ FOLDER=./src/
 
 all: $(NAME)
 
-$(NAME): $(FOLDER)DDOS.o $(FOLDER)commands.o
-					$(CC) -o $(NAME) $^
+$(NAME): $(OBJ)
+				$(CC) -o $(NAME) $^
 
-	$(OBJ):
-					$(CC) -o $@ -c $<
+$(OBJ):
+				$(CC) -o $@ -c $<
 
 clean:
 		$(RM) $(OBJ)
