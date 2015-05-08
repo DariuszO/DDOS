@@ -1,3 +1,5 @@
+#include "../include/DDOS.hh"
+
 int main(int argc, char **argv) {
 
   // Target (IP).

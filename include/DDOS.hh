@@ -2,7 +2,8 @@
 #define DDOS_H
 
 #include <iostream>
-#include <thread>
+#include <pthread.h>
+#include <cstdlib>
 #include <vector>
 #include <csignal>
 
@@ -12,13 +13,16 @@ class DDOS {
   private:
     string target;
     unsigned long int frequency;
-    bool isHost(string target);
+
+    bool isIP();
+    bool ping();
 
   public:
-    DDOS();
-    void attack();
-    void stop(vector<thread> threads);
+    DDOS(string target, unsigned long int frequency);
     ~DDOS();
+
+    void attack();
+    // void stop(vector<thread> threads);
 };
 
 #endif
