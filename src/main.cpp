@@ -1,5 +1,8 @@
 int main(int argc, char **argv) {
 
-  // Commands Lines.
+  // Target (IP).
+  // Frequency (Simultaneous requests).
+  // Delete thread on CTRL+C.
+  // signal(SIGINT, <<<func>>>);
   return 0;
 }
