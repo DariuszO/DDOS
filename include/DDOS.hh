@@ -6,19 +6,25 @@
 #include <cstdlib>
 #include <vector>
 #include <csignal>
+#include <sys/socket.h>
+#include <regex>
 
 using namespace std;
 
 class DDOS {
   private:
     string target;
+    bool protocol;
+    unsigned short int port;
     unsigned long int frequency;
 
-    bool isIP();
+    bool isIPv4();
     bool ping();
 
+    void goSocket();
+
   public:
-    DDOS(string target, unsigned long int frequency);
+    DDOS(string target, unsigned long int frequency, unsigned short int port, bool protocol);
     ~DDOS();
 
     void attack();

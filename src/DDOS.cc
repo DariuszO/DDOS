@@ -1,6 +1,6 @@
 #include "../include/DDOS.hh"
 
-DDOS::DDOS(string target, unsigned long int frequency): target(target), frequency(frequency) {}
+DDOS::DDOS(string target, unsigned long int frequency, unsigned short int port, bool protocol): target(target), protocol(protocol), port(port), frequency(frequency) {}
 
 bool DDOS::ping() {
   // TODO:
@@ -8,10 +8,14 @@ bool DDOS::ping() {
   return false;
 }
 
-bool DDOS::isIP() {
+bool DDOS::isIPv4() {
+  regex IPv4("([0-9]{1,3}.){3}\\.([0-9]{1,3})");
+  return (regex_match(this->target, IPv4)) ? true : false;
+}
+
+void DDOS::goSocket() {
   // TODO:
-  // Check if a syntax correspond to a IP format.
-  return false;
+  // Send a socket.
 }
 
 void DDOS::attack() {
