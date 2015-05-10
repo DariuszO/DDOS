@@ -1,12 +1,6 @@
 #include "../include/DDOS.hh"
 
-DDOS::DDOS(string target, unsigned long int frequency, unsigned short int port, bool protocol): target(target), protocol(protocol), port(port), frequency(frequency) {}
-
-bool DDOS::ping() {
-  // TODO:
-  // Check if host exist, simule a ping command.
-  return false;
-}
+DDOS::DDOS(char *target, unsigned long int frequency, unsigned short int port, bool protocol): target(target), protocol(protocol), port(port), frequency(frequency) {}
 
 bool DDOS::isIPv4() {
   regex IPv4("([0-9]{1,3}.){3}\\.([0-9]{1,3})");
@@ -16,19 +10,19 @@ bool DDOS::isIPv4() {
 void DDOS::goSocket() {
   SOCKADDR_IN sin;
   SOCKET sock = socket(AF_INET, this->protocol, 0);
-  if(sock == INVALID_SOCKET) {
-      cout << "er socket" << endl;
-      exit(1);
-  }
+  // TODO: Check socket.
   sin.sin_addr.s_addr = inet_addr(this->target);
   sin.sin_family = AF_INET;
   sin.sin_port = htons(this->port);
+  connect(sock, (SOCKADDR*)&sin, sizeof(sin));
+  // TODO: Check connect.
 }
 
 void DDOS::attack() {
   // TODO:
   // Check if host is valid (::isIP && ::ping).
   // GO DDOS.
+  
 }
 
 /*void DDOS::stop(vector<std::thread> threads) {
