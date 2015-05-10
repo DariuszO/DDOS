@@ -2,12 +2,23 @@
 #define DDOS_H
 
 #include <iostream>
-#include <pthread.h>
 #include <cstdlib>
 #include <vector>
-#include <csignal>
-#include <sys/socket.h>
 #include <regex>
+#include <csignal>
+
+#include <pthread.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+typedef int SOCKET;
+typedef struct sockaddr_in SOCKADDR_IN;
+typedef struct sockaddr SOCKADDR;
+typedef struct in_addr IN_ADDR;
+
+#define INVALID_SOCKET -1
 
 using namespace std;
 

