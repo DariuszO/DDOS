@@ -8,7 +8,7 @@ bool DDOS::isIPv4() {
 }
 
 void DDOS::goSocket() {
-  for (;;) {
+  while (true) {
     SOCKADDR_IN sin;
     SOCKET sock = socket(AF_INET, this->protocol, 0);
     // TODO: Check socket.
@@ -16,7 +16,8 @@ void DDOS::goSocket() {
     sin.sin_family = AF_INET;
     sin.sin_port = htons(this->port);
     connect(sock, (SOCKADDR*)&sin, sizeof(sin));
-    // TODO: Check connect.  
+    // TODO: Check connect.
+    break;
   }
 }
 
@@ -24,9 +25,10 @@ void DDOS::attack() {
   if(!this->isIPv4()) {
     // TODO: Return error.
   }
-  for (;;) {
+  while (true) {
     // TODO:
     // Create thread + pass a goSocket.
+    break;
   }
 }
 

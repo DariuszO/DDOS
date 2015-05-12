@@ -9,10 +9,11 @@ FLAGS=-std=c++11
 all: $(NAME)
 
 $(NAME): $(OBJ)
-				$(CC) -o $(NAME) $^ $(FLAGS)
+				$(CC) -o $@ $^ $(FLAGS)
 
 $(OBJ):
-				$(CC) -o $@ -c $< $(FLAGS)
+				$(CC) -o ./src/DDOS.o -c ./src/DDOS.cc $(FLAGS)
+				$(CC) -o ./src/commands.o -c ./src/commands.cc $(FLAGS)
 
 clean:
 		$(RM) $(OBJ)
