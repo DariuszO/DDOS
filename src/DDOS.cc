@@ -17,8 +17,9 @@ void DDOS::goSocket() {
     sin.sin_port = htons(this->port);
     connect(sock, (SOCKADDR*)&sin, sizeof(sin));
     // TODO: Check connect.
-    break;
   }
+
+  pthread_exit(NULL);
 }
 
 void DDOS::attack() {
@@ -28,7 +29,11 @@ void DDOS::attack() {
   while (true) {
     // TODO:
     // Create thread + pass a goSocket.
-    break;
+
+    pthread_t threads[this->frequency];
+    for(int i = 0; i < this->frequency; i++) {
+      // int currentThreads = pthread_create(&threads[i], NULL, goSocket, NULL);
+    }
   }
 }
 
