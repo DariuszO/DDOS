@@ -18,6 +18,9 @@ typedef struct sockaddr_in SOCKADDR_IN;
 typedef struct sockaddr SOCKADDR;
 typedef struct in_addr IN_ADDR;
 
+typedef unsigned short int MIN_SUPER_INT;
+typedef unsigned long int MAX_SUPER_INT;
+
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 
@@ -27,14 +30,19 @@ class DDOS {
   private:
     char *target;
     bool protocol;
-    unsigned short int port;
-    unsigned long int frequency;
+    MIN_SUPER_INT port;
+    MAX_SUPER_INT frequency;
 
     bool isIPv4();
-    void goSocket();
+    static void* goSocket(void *);
+
+    bool getProtocol();
+    MIN_SUPER_INT getPort();
+    MAX_SUPER_INT getFrequency();
+
 
   public:
-    DDOS(char *target, unsigned long int frequency, unsigned short int port, bool protocol);
+    DDOS(char *target, MAX_SUPER_INT frequency, MIN_SUPER_INT port, bool protocol);
     ~DDOS();
 
     void attack();
