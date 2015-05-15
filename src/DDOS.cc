@@ -48,9 +48,12 @@ void DDOS::attack() {
 
 DDOS::~DDOS() {
   /*
-    for (std::thread & t : threads) {
-        t.join();
-    }
-    threads.clear();
+    TODO: -->
+    Faire passer le vecteur dans la classe.
+
+  for (std::thread & t : threads) {
+      t.join();
+  }
+  threads.clear();
   */
 }
