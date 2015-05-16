@@ -25,6 +25,10 @@ typedef unsigned long int MAX_SUPER_INT;
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 
+#define BOOTSTRAP_SOCKET puts("<error>");
+#define BOOTSTRAP_IPV4 puts("<error>");
+#define BOOTSTRAP_TYPE puts("<error>");
+
 using namespace std;
 
 class DDOS {
