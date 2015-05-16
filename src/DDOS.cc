@@ -40,20 +40,14 @@ void DDOS::attack() {
     // TODO: Return error bootstrap.
   }
 
-  vector<thread> threads;
   for (MAX_SUPER_INT i = 0; i < this->frequency; i++) {
-    threads.emplace_back(DDOS::goSocket, this);
+    this->threads.emplace_back(DDOS::goSocket, this);
   }
 }
 
 DDOS::~DDOS() {
-  /*
-    TODO: -->
-    Faire passer le vecteur dans la classe.
-
-  for (std::thread & t : threads) {
+  for (auto& t : this->threads) {
       t.join();
   }
-  threads.clear();
-  */
+  this->threads.clear();
 }

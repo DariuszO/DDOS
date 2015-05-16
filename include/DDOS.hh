@@ -7,6 +7,7 @@
 #include <csignal>
 #include <regex>
 #include <thread>
+#include <getopt.h>
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -32,6 +33,7 @@ class DDOS {
     bool protocol;
     MIN_SUPER_INT port;
     MAX_SUPER_INT frequency;
+    vector<thread> threads;
 
     bool isIPv4();
     static void* goSocket(void *);
