@@ -1,4 +1,3 @@
-#include "../include/DDOS.hh"
 #include "../include/commands.hh"
 
 int main(int argc, char **argv) {
@@ -9,7 +8,7 @@ int main(int argc, char **argv) {
       {"type",         required_argument, 0, 't'},
       {"frequency",    required_argument, 0, 'f'}
   };
-  vector<string> commands;
+  string commands[4] = {"80", "UDP", "10", ""};
 
   while(true) {
     c = getopt_long(argc, argv, "p:t:f:", options, NULL);
@@ -19,15 +18,19 @@ int main(int argc, char **argv) {
 
     switch (c) {
       case 'p':
-        PUSH_COMMAND
+        commands[0] = optarg;
         break;
 
       case 't':
-        PUSH_COMMAND
+        commands[1] = optarg;
         break;
 
       case 'f':
-        PUSH_COMMAND
+        commands[2] = optarg;
+        break;
+
+      case 'c':
+        commands[3] = optarg;
         break;
 
       case '?':
@@ -38,5 +41,27 @@ int main(int argc, char **argv) {
         DEFAULT
       }
     }
+
+    MIN_SUPER_INT port = atoi(commands[0].c_str());
+    MAX_SUPER_INT frequency = atoi(commands[2].c_str());
+    bool type = (protocol(commands[1])) ? true : false;
+
+    subChecking(&port, &frequency);
+
+    //# DDOS go(commands[3], frequency, port, type);
   return 0;
+}
+
+static bool protocol(string target) {
+  regex protocol("^UDP$");
+  return (regex_match(target, protocol)) ? true : false;
+}
+
+template<typename T, typename O>
+static void subChecking(T *port, O *frequency) {
+  if(port == 0)
+    port = (T *) 80;
+
+  if(frequency == 0)
+    frequency = (O *) 10;
 }
