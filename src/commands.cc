@@ -57,11 +57,11 @@ static bool protocol(string target) {
   return (regex_match(target, protocol)) ? true : false;
 }
 
-template<typename T, typename O>
-static void subChecking(T *port, O *frequency) {
+template<typename P, typename F>
+static void subChecking(P *port, F *frequency) {
   if(port == 0)
-    port = (T *) 80;
+    port = (P *) 80;
 
   if(frequency == 0)
-    frequency = (O *) 10;
+    frequency = (F *) 10;
 }

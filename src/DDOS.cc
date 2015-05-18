@@ -33,7 +33,7 @@ void* DDOS::goSocket(void *object) {
     sin.sin_family = AF_INET;
     sin.sin_port = htons(mockingSocket->getPort());
     connect(sock, (SOCKADDR*)&sin, sizeof(sin));
-    // TODO: Check connect && return error bootstrap..
+    // TODO: Check connect && return error bootstrap.
   }
 }
 
