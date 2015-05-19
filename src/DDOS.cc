@@ -16,8 +16,6 @@ MAX_SUPER_INT DDOS::getFrequency() {
 }
 
 bool DDOS::getProtocol() {
-  // TODO:
-  // Check format !
   return (this->protocol) ? SOCK_STREAM : SOCK_DGRAM;
 }
 
