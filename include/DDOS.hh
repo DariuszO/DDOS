@@ -25,15 +25,16 @@ typedef unsigned long int MAX_SUPER_INT;
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 
-#define BOOTSTRAP_SOCKET puts("<error>");
-#define BOOTSTRAP_IPV4 puts("<error>");
-#define BOOTSTRAP_TYPE puts("<error>");
+#define BOOTSTRAP_SOCKET puts("<error SOCKET>");
+#define BOOTSTRAP_CONNECT puts("<error CONNECT>");
+#define BOOTSTRAP_IPV4 puts("<error IPV4>");
+#define BOOTSTRAP_THREADS puts("<success THREADS>");
 
 using namespace std;
 
 class DDOS {
   private:
-    char *target;
+    string target;
     bool protocol;
     MIN_SUPER_INT port;
     MAX_SUPER_INT frequency;
@@ -48,7 +49,7 @@ class DDOS {
 
 
   public:
-    DDOS(char *target, MAX_SUPER_INT frequency, MIN_SUPER_INT port, bool protocol);
+    DDOS(string target, MAX_SUPER_INT frequency, MIN_SUPER_INT port, bool protocol);
     ~DDOS();
 
     void attack();
