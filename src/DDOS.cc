@@ -39,6 +39,8 @@ void DDOS::attack() {
     this->~DDOS();
   }
 
+  // TODO:
+  // Range ?
   for (MAX_SUPER_INT i = 0; i < this->frequency; i++) {
     this->threads.emplace_back(DDOS::goSocket, this);
   }

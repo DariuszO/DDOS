@@ -6,7 +6,7 @@
 #define HELP puts("<help>");
 #define DEFAULT puts("<default>");
 
-static bool protocol(string target);
+static bool protocolChecking(string target);
 
 template<typename T, typename O>
 static void subChecking(T *port, O *frequency);

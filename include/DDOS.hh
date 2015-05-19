@@ -8,6 +8,7 @@
 #include <regex>
 #include <thread>
 #include <getopt.h>
+#include <map>
 
 #include <sys/types.h>
 #include <sys/socket.h>
