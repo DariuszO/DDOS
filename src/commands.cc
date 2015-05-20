@@ -6,12 +6,13 @@ int main(int argc, char **argv) {
   struct option options[] = {
       {"port",         required_argument, 0, 'p'},
       {"frequency",    required_argument, 0, 'f'},
-      {"target",       required_argument, 0, 'i'}
+      {"target",       required_argument, 0, 't'},
+      {"time",         required_argument, 0, 's'}
   };
   map<string, string> commands;
 
   while(true) {
-    c = getopt_long(argc, argv, "p:t:f:i:", options, NULL);
+    c = getopt_long(argc, argv, "p:t:f:t:s:", options, NULL);
 
     if (c == -1)
       break;
@@ -25,8 +26,12 @@ int main(int argc, char **argv) {
         commands["freqency"] = optarg;
         break;
 
-      case 'i':
+      case 't':
         commands["target"] = optarg;
+        break;
+
+      case 's':
+        commands["time"] = optarg;
         break;
 
       case '?':
@@ -38,16 +43,17 @@ int main(int argc, char **argv) {
 
     MIN_SUPER_INT port = atoi(commands["port"].c_str());
     MAX_SUPER_INT frequency = atoi(commands["freqency"].c_str());
+    MAX_SUPER_INT timeDDOS = atoi(commands["time"].c_str());
 
-    subChecking(&port, &frequency);
+    subChecking(&port, &frequency, &timeDDOS);
 
-    DDOS go(commands["target"], frequency, port);
+    DDOS go(commands["target"], frequency, port, timeDDOS);
     go.attack();
   return 0;
 }
 
-template<typename P, typename F>
-static void subChecking(P *port, F *frequency) {
+template<typename P, typename F, typename T>
+static void subChecking(P *port, F *frequency, T *timeDDOS) {
   if(*(port) == 0) {
     port = (P *) 80;
     CHANGE_PORT
@@ -56,5 +62,10 @@ static void subChecking(P *port, F *frequency) {
   if(*(frequency) == 0) {
     frequency = (F *) 10;
     CHANGE_FREQUENCY
+  }
+
+  if(*(timeDDOS) == 0) {
+    timeDDOS = (T *) 3600;
+    CHANGE_TIME
   }
 }

@@ -41,19 +41,23 @@ class DDOS {
     string target;
     MIN_SUPER_INT port;
     MAX_SUPER_INT frequency;
+    MAX_SUPER_INT timeDDOS;
     vector<thread> threads;
+    thread threadTime;
 
     bool isIPv4();
     static void* goSocket(void *);
+    static void* methodTime(void *);
 
     MIN_SUPER_INT getPort();
     MAX_SUPER_INT getFrequency();
 
   public:
-    DDOS(string target, MAX_SUPER_INT frequency, MIN_SUPER_INT port);
+    DDOS(string target, MAX_SUPER_INT frequency, MIN_SUPER_INT port, MAX_SUPER_INT timeDDOS);
     ~DDOS();
 
     void attack();
+    void stop();
 };
 
 #endif
