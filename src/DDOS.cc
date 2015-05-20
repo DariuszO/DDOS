@@ -47,6 +47,8 @@ void DDOS::attack() {
   printf("\033[1;36m->\e[0m DDOS >> %s:%hu (UDP)\n\033[1;36m->\e[0m Frequency - %lu\n", this->target.c_str(), this->port, this->frequency);
 }
 
+// TODO:
+// Pass there threads to static
 DDOS::~DDOS() {
   for (auto& t : this->threads) {
       t.join();

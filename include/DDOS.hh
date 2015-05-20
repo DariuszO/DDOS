@@ -49,7 +49,6 @@ class DDOS {
     MIN_SUPER_INT getPort();
     MAX_SUPER_INT getFrequency();
 
-
   public:
     DDOS(string target, MAX_SUPER_INT frequency, MIN_SUPER_INT port);
     ~DDOS();
