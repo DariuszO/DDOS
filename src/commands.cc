@@ -7,12 +7,14 @@ int main(int argc, char **argv) {
       {"port",         required_argument, 0, 'p'},
       {"frequency",    required_argument, 0, 'f'},
       {"target",       required_argument, 0, 't'},
-      {"time",         required_argument, 0, 's'}
+      {"time",         required_argument, 0, 's'},
+      {"help",         no_argument,       0, 'h'},
+      {"version",      no_argument,       0, 'v'}
   };
   map<string, string> commands;
 
   while(true) {
-    c = getopt_long(argc, argv, "p:t:f:t:s:", options, NULL);
+    c = getopt_long(argc, argv, "p:t:f:t:s:hv", options, NULL);
 
     if (c == -1)
       break;
@@ -34,8 +36,18 @@ int main(int argc, char **argv) {
         commands["time"] = optarg;
         break;
 
-      case '?':
+      case 'h':
         HELP
+        exit(0);
+        break;
+
+      case 'v':
+        VERSION
+        exit(0);
+        break;
+
+      case '?':
+        DEFAULT
         exit(0);
         break;
       }

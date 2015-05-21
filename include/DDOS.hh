@@ -4,7 +4,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include <csignal>
 #include <regex>
 #include <thread>
 #include <getopt.h>
