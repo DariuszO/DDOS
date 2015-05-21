@@ -56,17 +56,17 @@ int main(int argc, char **argv) {
 template<typename P, typename F, typename T>
 static void subChecking(P *port, F *frequency, T *timeDDOS) {
   if(*(port) == 0) {
-    port = (P *) 80;
+    *(port) = (P) 80;
     CHANGE_PORT
   }
 
   if(*(frequency) == 0) {
-    frequency = (F *) 10;
+    *(frequency) = (F) 10;
     CHANGE_FREQUENCY
   }
 
   if(*(timeDDOS) == 0) {
-    timeDDOS = (T *) 30;
+    *(timeDDOS) = (T) 30;
     CHANGE_TIME
   }
 }
