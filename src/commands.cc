@@ -49,6 +49,7 @@ int main(int argc, char **argv) {
 
     DDOS go(commands["target"], frequency, port, timeDDOS);
     go.attack();
+    sleep(timeDDOS + 2); //# 2 seconds for the margin.
   return 0;
 }
 
@@ -65,7 +66,7 @@ static void subChecking(P *port, F *frequency, T *timeDDOS) {
   }
 
   if(*(timeDDOS) == 0) {
-    timeDDOS = (T *) 3600;
+    timeDDOS = (T *) 30;
     CHANGE_TIME
   }
 }

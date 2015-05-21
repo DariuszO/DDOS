@@ -29,8 +29,8 @@ typedef unsigned long int MAX_SUPER_INT;
 
 #define BOOTSTRAP_SOCKET puts("\033[31m[!]\033[m Invalid socket.");
 #define BOOTSTRAP_CONNECT puts("\033[31m[!]\033[m Unable connect to target.");
-#define BOOTSTRAP_IPV4 puts("\033[31m[!]\033[m Please, specify a valid IP.");
-#define BOOTSTRAP_THREADS puts("\033[32m[v]\033[m Operation finished, threads has been closed.");
+#define BOOTSTRAP_IPV4 puts("\033[31m[!]\033[m Please, specify a valid IP... Shutdown...");
+#define BOOTSTRAP_THREADS puts("\033[32m[v]\033[m Operation finished, all threads has been closed.");
 
 #define DDOS_GO puts("\033[1;36mOngoing Attack...\e[0m");
 
@@ -44,6 +44,7 @@ class DDOS {
     MAX_SUPER_INT timeDDOS;
     vector<thread> threads;
     thread threadTime;
+    bool propageSocket;
 
     bool isIPv4();
     static void* goSocket(void *);
