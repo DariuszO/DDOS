@@ -12,9 +12,9 @@ After, he should be into the `bin` folder.
     -h [--help]
     -v [--version]
     -t [--target]
-    -s [--time] (default: 3600)
+    -s [--time] (default: 3600) -> Time of the operation
     -p [--port] (default: 80)
-    -f [--frequency] (default: 10)
+    -f [--frequency] (default: 10) -> simultaneous requests
 
     Example :
     ./DDOS -t 12.45.32.123 -s 2400 -p 20 -f 200
